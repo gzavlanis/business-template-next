@@ -4,8 +4,8 @@
 import React from 'react';
 import { LogOut, UserIcon } from "lucide-react";
 import { useRouter } from 'next/navigation';
-import Dashboard from '../../components/Dashboard/Dashboard';
-import { useTheme } from '../../components/ThemeProvider';
+import Dashboard from '@/components/Dashboard/Dashboard';
+import { useTheme } from '@/components/ThemeProvider';
 
 export default function DashboardPage() {
   const router = useRouter();

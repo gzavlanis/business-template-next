@@ -1,8 +1,8 @@
 // app/profile/page.js
 'use client';
-import UserPage from '../../components/User/UserPage';
+import UserPage from '../../../components/User/UserPage';
 // HomeFooter is now handled by the layout's conditional rendering based on pathname
-import { useTheme } from '../../components/ThemeProvider';
+import { useTheme } from '../../../components/ThemeProvider';
 
 export default function ProfilePage() {
   const { theme } = useTheme();

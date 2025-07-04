@@ -2,12 +2,12 @@
 'use client'; // This is a Client Component because it uses client-side hooks/context
 
 import { useRouter, usePathname } from 'next/navigation';
-import { useTheme } from '../../components/ThemeProvider';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footers/Footer';
-import HomeFooter from '../../components/Footers/HomeFooter';
-import Chat from '../../components/Chat/Chat';
+import { useTheme } from '../../../components/ThemeProvider';
+import Sidebar from '../../../components/Sidebar/Sidebar';
+import Header from '../../../components/Header/Header';
+import Footer from '../../../components/Footers/Footer';
+import HomeFooter from '../../../components/Footers/HomeFooter';
+import Chat from '../../../components/Chat/Chat';
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -41,7 +41,7 @@ export default function DashboardLayout({ children }) {
   // REVISED: Calculate dynamic left margin for the content wrapper.
   // This margin pushes the main content area to the right ONLY on large screens
   // when the sidebar is expanded. On small screens, it will overlay.
-  const contentAreaMarginClass = isLargeScreen && isSidebarExpanded ? 'ml-64' : 'ml-15';
+  const contentAreaMarginClass = isLargeScreen && isSidebarExpanded ? 'ml-5' : 'ml-15';
 
   // Add an overlay class for small screens when sidebar is expanded
   // This creates a semi-transparent background behind the main content area.
