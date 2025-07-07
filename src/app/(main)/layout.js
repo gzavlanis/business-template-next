@@ -19,51 +19,51 @@ export default function MainLayoutGroup({ children }) {
     toggleSidebar,
     isLargeScreen,
     openSubmenus,
-    toggleSubmenu,
+    toggleSubmenu
   } = useTheme();
 
   // Navigation handlers using Next.js router
-  const handleNavigateToDashboard = () => router.push("/dashboard");
-  const handleNavigateToProfile = () => router.push("/profile");
+  const handleNavigateToDashboard = () => router.push('/dashboard');
+  const handleNavigateToProfile = () => router.push('/profile');
   const handleLogout = () => {
     // In a real app: Clear auth token/session here
-    router.push("/login");
+    router.push('/login');
   };
-  const handleNavigateToCalendar = () => router.push("/calendar");
-  const handleNavigateToDataTables = () => router.push("/data-tables");
-  const handleNavigateToProductTable = () => router.push("/product-table");
-  const handleNavigateToComponents = () => router.push("/components");
-  const handleNavigateToButtons = () => router.push("/buttons");
-  const handleNavigateToContact = () => router.push("/contact");
+  const handleNavigateToCalendar = () => router.push('/calendar');
+  const handleNavigateToDataTables = () => router.push('/data-tables');
+  const handleNavigateToProductTable = () => router.push('/product-table');
+  const handleNavigateToComponents = () => router.push('/components');
+  const handleNavigateToButtons = () => router.push('/buttons');
+  const handleNavigateToContact = () => router.push('/contact');
 
-  const appThemeClasses =
-    theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900";
+  const appThemeClasses = theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900";
 
   // Determine which footer to render based on the current pathname
   const renderSpecificFooter = () => {
-    if (["/profile", "/contact", "/components"].includes(pathname)) {
+    if (['/profile', '/contact', '/components'].includes(pathname)) {
       return <HomeFooter theme={theme} />;
     }
     return <Footer theme={theme} />;
   };
 
   // Check if the current page is the dashboard
-  const isDashboardPage = pathname === "/dashboard";
-  const isCalendarPage = pathname === "/calendar";
-  const isComponentsPage = pathname === "/components";
-  const isDataTablesPage = pathname === "/data-tables";
-  const isProductTablePage = pathname === "/product-table";
+  const isDashboardPage = pathname === '/dashboard';
+  // Check if the current page is the components page
+  const isComponentsPage = pathname === '/components';
+  const isProductTable = pathname === '/product-table';
+  const isCalendarPage = pathname === '/calendar';
+  const isDataTablesPage = pathname === '/data-tables';
 
-  // Dynamic left margin for the content wrapper.
-  const contentAreaOffsetClass = isLargeScreen && isSidebarExpanded && !isComponentsPage ? 'ml-64' : 'ml-15';
+  const contentAreaOffsetClass = isLargeScreen
+    ? (isSidebarExpanded ? 'ml-64' : 'ml-0') // On large screens, sidebar is always expanded, so ml-64
+    : (isSidebarExpanded ? 'ml-0' : (isComponentsPage ? 'ml-0' : 'ml-8')); // On small screens: ml-0 if expanded (overlays), ml-16 if collapsed (for sidebar space), ml-0 if components page (no sidebar)
 
   // Add an overlay class for small screens when sidebar is expanded
   const overlayClass = !isLargeScreen && isSidebarExpanded && !isComponentsPage ? 'before:content-[""] before:absolute before:inset-0 before:bg-black before:opacity-50 before:z-30' : '';
 
   return (
-    <div
-      className={`flex min-h-screen font-sans ${appThemeClasses} overflow-x-hidden`}
-    >
+    <div className={`flex min-h-screen font-sans ${appThemeClasses} overflow-x-hidden`}>
+      {/* Conditionally render the Sidebar based on the current page */}
       {!isComponentsPage && (
         <Sidebar
           theme={theme}
@@ -83,16 +83,11 @@ export default function MainLayoutGroup({ children }) {
           hideThemeToggle={false}
         />
       )}
-      <div
-        className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${contentAreaOffsetClass} ${overlayClass} ${
-          !isLargeScreen ? "w-full" : ""
-        }`}
-      >
+      <div className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${contentAreaOffsetClass} ${overlayClass} ${!isLargeScreen ? 'w-full' : ''}`}>
         {/* Conditionally render the Header based on the current page */}
-        {!isDashboardPage && !isCalendarPage && !isDataTablesPage && !isProductTablePage &&(
-          <Header theme={theme} onThemeChange={handleThemeToggle} />
-        )}
-        <main className={`flex-1 px-1 py-4 sm:px-4 sm:py-8 pt-20 overflow-y-auto overflow-x-hidden flex flex-col w-full max-w-full ${isDashboardPage ? 'pt-8' : ''}`}>
+        {!isDashboardPage && !isProductTable && !isCalendarPage && !isDataTablesPage && <Header theme={theme} onThemeChange={handleThemeToggle} />}
+        {/* Main content area padding remains px-4 for mobile */}
+        <main className={`flex-1 px-8 py-4 sm:px-8 sm:py-8 pt-20 overflow-y-auto overflow-x-hidden flex flex-col w-full max-w-full mx-auto ${isDashboardPage ? 'pt-8' : ''}`}>
           {children}
           <div className="flex-grow"></div>
           {renderSpecificFooter()}
