@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Documentation - Next.js Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for theme transition and font */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        /* Dark theme classes (handled by JS toggling on body) */
+        .dark .bg-gray-50 { background-color: #1a202c; } /* Darker body background */
+        .dark .bg-white { background-color: #2d3748; } /* Darker section backgrounds */
+        .dark .text-gray-800 { color: #e2e8f0; } /* Lighter general text */
+        .dark .text-gray-900 { color: #ffffff; } /* White headings */
+        .dark .text-gray-600 { color: #a0aec0; } /* Lighter paragraph text */
+        .dark .bg-gray-100 { background-color: #4a5568; } /* Darker code/example backgrounds */
+        .dark .border-gray-200 { border-color: #4a5568; } /* Darker borders */
+        .dark .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.08); }
+
+        /* Code block styling */
+        pre {
+            background-color: #f7fafc; /* Light gray for light mode */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.5;
+        }
+        .dark pre {
+            background-color: #1f2937; /* Darker gray for dark mode */
+            color: #e2e8f0;
+        }
+        pre code {
+            display: block;
+        }
+        .code-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg my-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold mb-4 text-gray-900">Project Documentation</h1>
+            <p class="text-lg text-gray-600">A comprehensive guide to the Next.js Dashboard Application.</p>
+            <button id="theme-toggle" class="mt-4 px-4 py-2 rounded-md font-semibold transition-colors duration-200 bg-gray-200 hover:bg-gray-300 text-gray-800">
+                Toggle Theme
+            </button>
+        </header>
+
+        <!-- Introduction -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">1. Introduction</h2>
+            <p class="text-gray-600 leading-relaxed">
+                This document provides an analytical overview of the "Next.js Dashboard Project," a modern web application
+                showcasing various interactive components and a robust, responsive design. Built with Next.js, React, and
+                styled using Tailwind CSS, this project serves as a template for building dynamic and user-friendly dashboards.
+            </p>
+        </section>
+
+        <!-- Key Features -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">2. Key Features</h2>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                <li><strong>Interactive Dashboard:</strong> A dynamic, drag-and-drop interface with sortable widgets for metrics and charts, leveraging `dnd-kit` for seamless interaction and `localStorage` for persistence.</li>
+                <li><strong>Advanced Data Tables:</strong> Fully functional tables with per-column filtering, pagination, and action buttons (edit/delete). Includes CSV export and import capabilities.</li>
+                <li><strong>Rich UI Components:</strong> A dedicated section showcasing various button styles (solid, outline, ghost), sizes (sm, md, lg), and states (disabled, with icons). Also demonstrates custom modal implementations.</li>
+                <li><strong>Dynamic Theming:</strong> Seamless light and dark mode switching, adapting the entire UI's color scheme for user preference.</li>
+                <li><strong>Fully Responsive Design:</strong> Optimized for optimal viewing and interaction across all devices, from large desktops to tablets and small mobile phones, achieved primarily with Tailwind CSS utility classes.</li>
+                <li><strong>Contact Form & Location:</strong> An integrated contact form with dummy API submission (simulated email sending) and an embedded Google Maps location.</li>
+                <li><strong>Responsive Header & Sidebar:</strong> A dynamic header with responsive navigation and a sidebar that adapts its visibility and state (expanded/collapsed) based on screen size.</li>
+            </ul>
+        </section>
+
+        <!-- Tailwind CSS Usage -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">3. Tailwind CSS Integration</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Tailwind CSS is extensively used throughout the project for rapid UI development and consistent styling.
+                It's a utility-first CSS framework that allows building designs directly in your HTML markup.
+            </p>
+            <h3 class="text-2xl font-semibold mb-3 text-gray-900">3.1. Basic Styling</h3>
+            <p class="text-gray-600 mb-2">
+                Common classes for padding, margin, text, and background colors:
+            </p>
+            <pre><code class="language-html">&lt;div class="p-4 bg-blue-500 text-white rounded-lg shadow-md"&gt;
+    This is a styled div.
+&lt;/div&gt;</code></pre>
+            <ul class="list-disc list-inside text-gray-600 mt-2">
+                <li><code>p-4</code>: 1rem (16px) padding on all sides.</li>
+                <li><code>bg-blue-500</code>: Blue background color.</li>
+                <li><code>text-white</code>: White text color.</li>
+                <li><code>rounded-lg</code>: Large border radius.</li>
+                <li><code>shadow-md</code>: Medium box shadow.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.2. Responsive Design</h3>
+            <p class="text-gray-600 mb-2">
+                Tailwind uses breakpoint prefixes for responsive design. Styles apply from that breakpoint upwards.
+            </p>
+            <pre><code class="language-html">&lt;div class="w-full md:w-1/2 lg:w-1/3 px-4"&gt;
+    Content that adapts to screen size.
+&lt;/div&gt;</code></pre>
+            <ul class="list-disc list-inside text-gray-600 mt-2">
+                <li><code>w-full</code>: Full width on small screens.</li>
+                <li><code>md:w-1/2</code>: Half width on medium screens and larger.</li>
+                <li><code>lg:w-1/3</code>: One-third width on large screens and larger.</li>
+                <li><code>px-4</code>: Horizontal padding.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.3. Flexbox and Grid</h3>
+            <p class="text-gray-600 mb-2">
+                Layouts are easily managed with flexbox and grid utilities.
+            </p>
+            <pre><code class="language-html">&lt;div class="flex flex-col sm:flex-row justify-center items-center gap-4"&gt;
+    &lt;!-- Flex items --&gt;
+&lt;/div&gt;</code></pre>
+            <ul class="list-disc list-inside text-gray-600 mt-2">
+                <li><code>flex</code>: Enables flex container.</li>
+                <li><code>flex-col</code>: Stacks items vertically by default.</li>
+                <li><code>sm:flex-row</code>: Arranges items horizontally on small screens and larger.</li>
+                <li><code>justify-center</code>: Centers items along the main axis.</li>
+                <li><code>items-center</code>: Centers items along the cross axis.</li>
+                <li><code>gap-4</code>: Adds space between flex items.</li>
+            </ul>
+        </section>
+
+        <!-- Component-Specific Details -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">4. Component Breakdown</h2>
+
+            <h3 class="text-2xl font-semibold mb-3 text-gray-900">4.1. Dashboard</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                The dashboard uses <code>@dnd-kit/core</code> and <code>@dnd-kit/sortable</code> for drag-and-drop functionality.
+                The layout of widgets is persisted using <code>localStorage</code>, ensuring user preferences are saved across sessions.
+            </p>
+            <pre><code class="language-javascript">
+// Example of localStorage usage in Dashboard.js
+useEffect(() => {
+    if (typeof window !== 'undefined') {
+        const savedLayout = localStorage.getItem('dashboardLayout');
+        if (savedLayout) {
+            setItems(JSON.parse(savedLayout));
+        }
+    }
+}, []);
+
+useEffect(() => {
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('dashboardLayout', JSON.stringify(items));
+    }
+}, [items]);
+            </code></pre>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.2. Data Tables</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                The data tables feature client-side filtering and pagination. Data can be exported to CSV and new data can be imported from CSV files.
+                Responsiveness is handled by <code>overflow-x-auto</code> on the table wrapper and responsive padding on table cells.
+            </p>
+            <pre><code class="language-html">
+&lt;div class="overflow-x-auto rounded-lg shadow-md"&gt;
+    &lt;table class="min-w-full divide-y divide-gray-200"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th class="px-2 py-2 sm:px-6 sm:py-3"&gt;...&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td class="px-2 py-2 sm:px-6 sm:py-4"&gt;...&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+            </code></pre>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.3. Buttons and Modals</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                A custom <code>Button</code> component supports various colors, sizes, and variants (solid, outline, ghost).
+                Example buttons demonstrate opening custom modals (information, confirmation, custom content).
+            </p>
+            <pre><code class="language-javascript">
+// Example Button usage
+&lt;Button color="primary" size="md"&gt;Primary Button&lt;/Button&gt;
+&lt;Button onClick={openInfoModal} color="primary" size="md"&gt;
+    &lt;Info size={18} className="mr-2 inline-block" /&gt; Open Info Modal
+&lt;/Button&gt;
+            </code></pre>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.4. Header and Sidebar</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                The header provides responsive navigation with a collapsible dropdown menu on small screens.
+                The sidebar is fixed, collapsible, and adapts its width and content visibility based on screen size, ensuring it doesn't overlap main content.
+            </p>
+            <pre><code class="language-javascript">
+// Sidebar responsive logic (simplified)
+const sidebarClasses = `
+    fixed top-0 left-0 h-full ...
+    ${isLargeScreen
+      ? 'w-64 translate-x-0'
+      : isSidebarExpanded
+        ? 'w-64 translate-x-0'
+        : 'w-16 translate-x-0 overflow-hidden' // Collapsed on small screens
+    }
+`;
+            </code></pre>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.5. Contact Form</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                The contact form uses a Next.js API route (<code>/api/contact</code>) to handle submissions.
+                For demonstration purposes, the API endpoint simulates sending an email by logging the form data to the server console.
+            </p>
+            <pre><code class="language-javascript">
+// app/api/contact/route.js (POST handler)
+import { NextResponse } from 'next/server';
+
+export async function POST(request) {
+  const formData = await request.json();
+  console.log('--- Simulating Email Send ---', formData);
+  return NextResponse.json({ message: 'Message sent successfully!' }, { status: 200 });
+}
+            </code></pre>
+        </section>
+
+        <!-- Theming and Responsiveness -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">5. Theming & Responsiveness</h2>
+            <h3 class="text-2xl font-semibold mb-3 text-gray-900">5.1. Dynamic Theming</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                The application supports light and dark modes. This is implemented by toggling a <code>dark</code> class on the <code>&lt;body&gt;</code> element.
+                Tailwind CSS then applies different styles based on this class using its <code>dark:</code> variant modifier.
+                The theme preference is persisted in <code>localStorage</code>.
+            </p>
+            <pre><code class="language-css">
+/* Example from style block */
+.dark .bg-white { background-color: #2d3748; }
+.dark .text-gray-800 { color: #e2e8f0; }
+            </code></pre>
+
+            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">5.2. Global Responsiveness</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                The entire application layout is designed to be fully responsive.
+                The main content area's padding and margins dynamically adjust based on screen size to prevent cutoffs and ensure optimal viewing.
+                This is managed primarily in the root layout file (e.g., <code>app/(main)/layout.js</code>) using Tailwind's responsive prefixes.
+            </p>
+            <pre><code class="language-html">
+&lt;!-- Example from app/(main)/layout.js --&gt;
+&lt;main class="flex-1 px-8 py-4 sm:px-8 sm:py-8 pt-20 ..."&gt;
+    {children}
+&lt;/main&gt;
+            </code></pre>
+            <ul class="list-disc list-inside text-gray-600 mt-2">
+                <li><code>px-8</code>: 32px horizontal padding on small screens.</li>
+                <li><code>sm:px-8</code>: Retains 32px horizontal padding on small screens and larger.</li>
+                <li>This ensures consistent spacing from the viewport edges.</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section>
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">6. Conclusion</h2>
+            <p class="text-gray-600 leading-relaxed">
+                This project demonstrates a robust and feature-rich dashboard application built with modern web technologies.
+                Its modular component structure, dynamic theming, and responsive design make it a strong foundation
+                for various web applications.
+            </p>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const themeToggleBtn = document.getElementById('theme-toggle'); // Get the new toggle button
+
+            // Function to apply theme classes
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    body.classList.add('dark');
+                    themeToggleBtn.textContent = 'Toggle Theme (Light)'; // Update button text
+                } else {
+                    body.classList.remove('dark');
+                    themeToggleBtn.textContent = 'Toggle Theme (Dark)'; // Update button text
+                }
+            }
+
+            // Load theme from localStorage or default to 'light'
+            let currentTheme = localStorage.getItem('appTheme') || 'light';
+            applyTheme(currentTheme);
+
+            // Add event listener to the dedicated theme toggle button
+            themeToggleBtn.addEventListener('click', () => {
+                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                localStorage.setItem('appTheme', currentTheme);
+                applyTheme(currentTheme);
+            });
+        });
+    </script>
+</body>
+</html>
