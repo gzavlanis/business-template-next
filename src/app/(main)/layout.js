@@ -53,6 +53,7 @@ export default function MainLayoutGroup({ children }) {
   const isProductTable = pathname === '/product-table';
   const isCalendarPage = pathname === '/calendar';
   const isDataTablesPage = pathname === '/data-tables';
+  const isContactPage = pathname === '/contact';
 
   const contentAreaOffsetClass = isLargeScreen
     ? (isSidebarExpanded ? 'ml-64' : 'ml-0') // On large screens, sidebar is always expanded, so ml-64
@@ -85,7 +86,7 @@ export default function MainLayoutGroup({ children }) {
       )}
       <div className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${contentAreaOffsetClass} ${overlayClass} ${!isLargeScreen ? 'w-full' : ''}`}>
         {/* Conditionally render the Header based on the current page */}
-        {!isDashboardPage && !isProductTable && !isCalendarPage && !isDataTablesPage && <Header theme={theme} onThemeChange={handleThemeToggle} />}
+        {!isDashboardPage && !isProductTable && !isCalendarPage && !isDataTablesPage && !isContactPage &&<Header theme={theme} onThemeChange={handleThemeToggle} />}
         {/* Main content area padding remains px-4 for mobile */}
         <main className={`flex-1 px-8 py-4 sm:px-8 sm:py-8 pt-20 overflow-y-auto overflow-x-hidden flex flex-col w-full max-w-full mx-auto ${isDashboardPage ? 'pt-8' : ''}`}>
           {children}

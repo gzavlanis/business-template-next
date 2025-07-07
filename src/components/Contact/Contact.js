@@ -1,5 +1,6 @@
+// components/Contact/Contact.js
 'use client';
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { MailIcon } from 'lucide-react';
 
 // --- ContactPage Component ---
@@ -7,7 +8,7 @@ function Contact({ theme }) {
   const [formData, setFormData] = useState({
     name: '', email: '', subject: '', message: ''
   });
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'loading', null
 
   const formBgClass = theme === 'dark' ? 'bg-gray-800' : 'bg-white';
   const textColorClass = theme === 'dark' ? 'text-gray-200' : 'text-gray-800';
@@ -23,9 +24,9 @@ function Contact({ theme }) {
     setFormData(prev => ({ ...prev, [name]: value }));
   }, []);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    setSubmitStatus(null); // Clear previous status
+    setSubmitStatus('loading'); // Set status to loading
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
@@ -37,13 +38,30 @@ function Contact({ theme }) {
       return;
     }
 
-    console.log('Contact form submitted:', formData);
-    // Simulate API call or data processing
-    setTimeout(() => {
-      setSubmitStatus({ type: 'success', message: 'Your message has been sent successfully!' });
-      setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
-      setTimeout(() => setSubmitStatus(null), 5000); // Clear status message after 5 seconds
-    }, 1000);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ type: 'success', message: result.message });
+        setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
+      } else {
+        setSubmitStatus({ type: 'error', message: result.error || 'Failed to send message.' });
+      }
+    } catch (error) {
+      console.error('Error sending contact form:', error);
+      setSubmitStatus({ type: 'error', message: 'An unexpected error occurred. Please try again.' });
+    } finally {
+      // Clear status message after 5 seconds, regardless of success or error
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
   }, [formData]);
 
   return (
@@ -92,17 +110,24 @@ function Contact({ theme }) {
           </div>
 
           {submitStatus && (
-            <div className={`p-3 rounded-md text-sm ${submitStatus.type === 'success' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'}`}>
-              {submitStatus.message}
+            <div className={`p-3 rounded-md text-sm ${
+              submitStatus.type === 'success'
+                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                : submitStatus.type === 'error'
+                  ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                  : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' // Loading state
+            }`}>
+              {submitStatus.type === 'loading' ? 'Sending message...' : submitStatus.message}
             </div>
           )}
 
           <button
             type="submit"
-            className={`w-full py-3 rounded-md font-semibold transition-colors duration-200 ${buttonBgClass} ${buttonTextColor} flex items-center justify-center space-x-2`}
+            className={`w-full py-3 rounded-md font-semibold transition-colors duration-200 ${buttonBgClass} ${buttonTextColor} flex items-center justify-center space-x-2 ${submitStatus === 'loading' ? 'opacity-70 cursor-not-allowed' : ''}`}
+            disabled={submitStatus === 'loading'} // Disable button when loading
           >
             <MailIcon size={20} />
-            <span>Send Message</span>
+            <span>{submitStatus === 'loading' ? 'Sending...' : 'Send Message'}</span>
           </button>
         </form>
       </section>

@@ -16,7 +16,7 @@ function Components({ theme }) {
   const [activeTab, setActiveTab] = useState('tab1'); // State for active tab
 
   return (
-    <div className={`p-4 rounded-lg w-full max-w-7xl mx-auto flex flex-col space-y-8`}>
+    <div className={`p-4 rounded-lg w-full max-w-7xl mx-auto flex flex-col space-y-8 pt-10`}>
       <h2 className={`text-3xl font-bold mb-6 ${textColorClass}`}>Components Showcase</h2>
       <p className={`mb-6 ${paragraphClass}`}>
         This page demonstrates various UI components like cards and tabs,
