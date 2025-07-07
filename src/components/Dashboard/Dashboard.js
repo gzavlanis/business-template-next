@@ -1,15 +1,11 @@
-// components/Dashboard/Dashboard.js
-'use client'; // This directive makes this a Client Component, as it uses state, effects, and Dnd-kit hooks
-
 import React, { useState, useEffect, useCallback } from "react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
-import SortableItem from "../Cards/SortableItem"; // Assuming SortableItem is also a client component if it uses hooks/events
+import SortableItem from "../Cards/SortableItem";
 
 function Dashboard({ theme }) {
-  // THEME PROP: Received from the parent layout/page
-
+  // THEME PROP: Received from App.jsx
   const LOCAL_STORAGE_KEY = "dashboardLayout";
 
   const defaultItems = [
@@ -28,44 +24,31 @@ function Dashboard({ theme }) {
     { id: 'metric-engagement', title: 'Engagement Rate', type: 'metric', icon: 'Activity', value: '15.2%', unit: 'vs. prev month' },
   ];
 
-  // Initialize items with default values.
-  // We will load from localStorage in a useEffect hook after the component mounts.
-  const [items, setItems] = useState(defaultItems);
-
-  // useEffect to load layout from localStorage ONLY on the client side after mount
-  useEffect(() => {
-    if (typeof window !== 'undefined') { // Ensure window (and localStorage) is defined
-      try {
-        const savedLayout = localStorage.getItem(LOCAL_STORAGE_KEY);
-        if (savedLayout) {
-          const parsedLayout = JSON.parse(savedLayout);
-          // Basic validation to ensure it's an array of objects with 'id'
-          if (Array.isArray(parsedLayout) && parsedLayout.every((item) => typeof item === "object" && item !== null && "id" in item)) {
-            console.log("Layout loaded from localStorage.");
-            setItems(parsedLayout); // Update state with loaded layout
-          } else {
-            console.log("Invalid layout in localStorage, using default items.");
-          }
-        } else {
-          console.log("No layout found in localStorage, using default items.");
+  const [items, setItems] = useState(() => {
+    try {
+      const savedLayout = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (savedLayout) {
+        const parsedLayout = JSON.parse(savedLayout);
+        if (Array.isArray(parsedLayout) && parsedLayout.every((item) => typeof item === "object" && item !== null && "id" in item)) {
+          console.log("Layout loaded from localStorage.");
+          return parsedLayout;
         }
-      } catch (error) {
-        console.error("Failed to load layout from localStorage:", error);
-        // If loading fails, it will remain defaultItems as initialized
       }
+      console.log("No valid layout in localStorage, using default items.");
+      return defaultItems;
+    } catch (error) {
+      console.error("Failed to load layout from localStorage:", error);
+      return defaultItems;
     }
-  }, []); // Empty dependency array means this runs only once after initial render on the client
+  });
 
-  // useEffect to persist items to localStorage whenever 'items' state changes
   useEffect(() => {
-    if (typeof window !== 'undefined') { // Ensure window (and localStorage) is defined
-      try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
-      } catch (error) {
-        console.error("Failed to save layout to localStorage:", error);
-      }
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+    } catch (error) {
+      console.error("Failed to save layout to localStorage:", error);
     }
-  }, [items]); // Runs whenever the 'items' state changes
+  }, [items]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),

@@ -1,4 +1,6 @@
-'use client';
+// components/Cards/SortableItem.js
+'use client'; // This component uses client-side hooks from dnd-kit
+
 import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -26,17 +28,17 @@ function SortableItem({ id, content, theme, isDragging }) {
   };
 
   // --- IconMap: Maps string names to Lucide React components ---
-// This allows storing icon references as strings in localStorage and retrieving them as components.
-const IconMap = {
-  DollarSign: DollarSign,
-  Users: Users,
-  ShoppingCart: ShoppingCart,
-  LifeBuoy: LifeBuoy,
-  BarChart: BarChart, // Note: This is a Lucide icon, distinct from the Chart.js BarChart component
-  Package: Package,
-  Megaphone: Megaphone,
-  Activity: Activity,
-};
+  // This allows storing icon references as strings in localStorage and retrieving them as components.
+  const IconMap = {
+    DollarSign: DollarSign,
+    Users: Users,
+    ShoppingCart: ShoppingCart,
+    LifeBuoy: LifeBuoy,
+    BarChart: BarChart, // Note: This is a Lucide icon, distinct from the Chart.js BarChart component
+    Package: Package,
+    Megaphone: Megaphone,
+    Activity: Activity,
+  };
 
   // Dynamically apply card background and text colors based on the theme.
   const cardClasses = theme === "dark" ? "bg-gray-800 text-gray-200 hover:shadow-xl" : "bg-white text-gray-800 hover:shadow-xl";
@@ -58,15 +60,23 @@ const IconMap = {
       style={style} // Apply dynamic styling for transforms and transitions.
       {...attributes} // Essential for accessibility (ARIA attributes).
       {...listeners} // Event listeners for drag interactions.
-      // Tailwind CSS classes for general styling, responsiveness, and hover effects.
-      className={`p-6 rounded-lg shadow-md transition-shadow duration-200 cursor-grab active:cursor-grabbing focus:outline-none
+      // ADDED: w-full, min-w-0, and responsive padding (p-4 sm:p-6)
+      // w-full: Ensures it takes the full width of its grid column.
+      // min-w-0: Crucial for allowing flex/grid items to shrink below their intrinsic content size.
+      // overflow-hidden: Prevents internal content from overflowing the card boundary.
+      // p-4 sm:p-6: Reduces padding on small screens for more content space.
+      className={`w-full min-w-0 overflow-hidden p-4 sm:p-6 rounded-lg shadow-md transition-shadow duration-200 cursor-grab active:cursor-grabbing focus:outline-none
         ${cardClasses} ${borderClasses} ${isDragging ? "opacity-70" : ""}`}
     >
       {/* Conditionally render content based on item type */}
       {content.type === 'chart' ? (
-        <div className="flex-grow flex flex-col justify-center items-center">
+        // Ensure chart container also takes full width and allows content to adapt
+        <div className="flex-grow flex flex-col justify-center items-center w-full">
           <h3 className="text-xl font-semibold mb-3 text-center">{content.title}</h3>
           {/* Render different chart types */}
+          {/* IMPORTANT: Ensure your individual chart components (LineChart, BarChartFn, etc.)
+                      are also responsive and do not have fixed pixel widths for their canvases/containers.
+                      They should use 'w-full' or percentages. */}
           {content.chartType === 'line' && <LineChart theme={theme} />}
           {content.chartType === 'bar' && <BarChartFn theme={theme} />}
           {content.chartType === 'doughnut' && <DoughnutChart theme={theme} />}

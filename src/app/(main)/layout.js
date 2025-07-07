@@ -47,21 +47,18 @@ export default function MainLayoutGroup({ children }) {
     return <Footer theme={theme} />;
   };
 
-  // Add an overlay class for small screens when sidebar is expanded
-  const overlayClass =
-    !isLargeScreen && isSidebarExpanded
-      ? 'before:content-[""] before:absolute before:inset-0 before:bg-black before:opacity-50 before:z-30'
-      : "";
-
   // Check if the current page is the dashboard
   const isDashboardPage = pathname === "/dashboard";
   const isCalendarPage = pathname === "/calendar";
   const isComponentsPage = pathname === "/components";
+  const isDataTablesPage = pathname === "/data-tables";
+  const isProductTablePage = pathname === "/product-table";
 
   // Dynamic left margin for the content wrapper.
-  // Apply ml-64 only if it's a large screen AND sidebar is expanded AND it's NOT the components page.
-  const contentAreaOffsetClass =
-    isLargeScreen && isSidebarExpanded && !isComponentsPage ? "ml-64" : "ml-15";
+  const contentAreaOffsetClass = isLargeScreen && isSidebarExpanded && !isComponentsPage ? 'ml-64' : 'ml-15';
+
+  // Add an overlay class for small screens when sidebar is expanded
+  const overlayClass = !isLargeScreen && isSidebarExpanded && !isComponentsPage ? 'before:content-[""] before:absolute before:inset-0 before:bg-black before:opacity-50 before:z-30' : '';
 
   return (
     <div
@@ -92,10 +89,10 @@ export default function MainLayoutGroup({ children }) {
         }`}
       >
         {/* Conditionally render the Header based on the current page */}
-        {!isDashboardPage && !isCalendarPage && (
+        {!isDashboardPage && !isCalendarPage && !isDataTablesPage && !isProductTablePage &&(
           <Header theme={theme} onThemeChange={handleThemeToggle} />
         )}
-        <main className={`flex-1 p-8 pt-20 overflow-y-auto flex flex-col`}>
+        <main className={`flex-1 px-1 py-4 sm:px-4 sm:py-8 pt-20 overflow-y-auto overflow-x-hidden flex flex-col w-full max-w-full ${isDashboardPage ? 'pt-8' : ''}`}>
           {children}
           <div className="flex-grow"></div>
           {renderSpecificFooter()}
