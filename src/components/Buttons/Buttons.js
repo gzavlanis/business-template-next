@@ -1,8 +1,20 @@
+// components/Buttons/Buttons.js
 'use client';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import React, { useState, useCallback } from 'react';
+import { Plus, Edit, Trash2, Info, CheckCircle, Settings, X } from 'lucide-react'; // Added Info, CheckCircle, Settings, X icons
+import { Modal } from '../Modal/Modal';
 
 // --- ButtonsPage Component ---
 function Buttons({ theme }) {
+  // Modal states
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
+
+  const inputBgClass = theme === 'dark' ? 'bg-gray-700' : 'bg-gray-50';
+  const inputTextColor = theme === 'dark' ? 'text-white' : 'text-gray-900';
+  const inputBorderClass = theme === 'dark' ? 'border-gray-600 focus:border-blue-500' : 'border-gray-300 focus:border-blue-700';
+
   const textColorClass = theme === 'dark' ? 'text-gray-200' : 'text-gray-800';
   const paragraphClass = theme === 'dark' ? 'text-gray-300' : 'text-gray-600';
 
@@ -54,8 +66,23 @@ function Buttons({ theme }) {
     );
   };
 
+  // Modal handlers
+  const openInfoModal = useCallback(() => setIsInfoModalOpen(true), []);
+  const closeInfoModal = useCallback(() => setIsInfoModalOpen(false), []);
+  const openConfirmModal = useCallback(() => setIsConfirmModalOpen(true), []);
+  const closeConfirmModal = useCallback(() => setIsConfirmModalOpen(false), []);
+  const openCustomModal = useCallback(() => setIsCustomModalOpen(true), []);
+  const closeCustomModal = useCallback(() => setIsCustomModalOpen(false), []);
+
+  const handleConfirmAction = useCallback(() => {
+    console.log("Action confirmed!");
+    // Perform actual action here
+    closeConfirmModal();
+  }, [closeConfirmModal]);
+
+
   return (
-    <div className={`p-4 rounded-lg w-full max-w-7xl mx-auto flex flex-col space-y-8`}>
+    <div className={`p-4 rounded-lg w-full max-w-7xl mx-auto flex flex-col space-y-8 mt-6`}>
       <h2 className={`text-3xl font-bold mb-6 ${textColorClass}`}>Button Showcase</h2>
       <p className={`mb-6 ${paragraphClass}`}>
         Explore a variety of button styles, sizes, and colors. These components are designed
@@ -142,6 +169,74 @@ function Buttons({ theme }) {
         </div>
       </section>
 
+      {/* NEW: Buttons to Open Modals */}
+      <section>
+        <h3 className={`text-2xl font-semibold mb-4 mt-8 ${textColorClass}`}>Buttons to Open Modals</h3>
+        <div className="flex flex-wrap items-center gap-4">
+          <Button onClick={openInfoModal} color="primary" size="md">
+            <Info size={18} className="mr-2 inline-block" /> Open Info Modal
+          </Button>
+          <Button onClick={openConfirmModal} color="danger" size="md">
+            <CheckCircle size={18} className="mr-2 inline-block" /> Open Confirm Modal
+          </Button>
+          <Button onClick={openCustomModal} color="secondary" size="md">
+            <Settings size={18} className="mr-2 inline-block" /> Open Custom Modal
+          </Button>
+        </div>
+      </section>
+
+      {/* Modals */}
+      <Modal isOpen={isInfoModalOpen} onClose={closeInfoModal} title="Information" theme={theme}>
+        <p className={paragraphClass}>This is an informational modal. It provides important details without requiring a decision from the user.</p>
+        <p className={`mt-2 text-sm ${paragraphClass}`}>You can put any kind of content here, like alerts, tips, or simple messages.</p>
+      </Modal>
+
+      <Modal isOpen={isConfirmModalOpen} onClose={closeConfirmModal} title="Confirm Action" theme={theme}>
+        <p className={paragraphClass}>Are you sure you want to proceed with this action? This cannot be undone.</p>
+        <div className="mt-4 flex justify-end space-x-3">
+          <button
+            onClick={closeConfirmModal}
+            className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200 ${
+              theme === 'dark' ? 'bg-gray-600 hover:bg-gray-700 text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+            }`}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleConfirmAction}
+            className={`px-4 py-2 rounded-md font-semibold transition-colors duration-200 ${
+              theme === 'dark' ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-green-700 hover:bg-green-800 text-white'
+            }`}
+          >
+            Confirm
+          </button>
+        </div>
+      </Modal>
+
+      <Modal isOpen={isCustomModalOpen} onClose={closeCustomModal} title="Custom Settings" theme={theme}>
+        <p className={paragraphClass}>This modal can contain more complex forms or interactive elements.</p>
+        <div className="mt-4 space-y-3">
+          <div>
+            <label htmlFor="customSetting" className={`block text-sm font-medium mb-1 ${textColorClass}`}>Custom Setting:</label>
+            <input
+              type="text" id="customSetting"
+              className={`w-full p-2 rounded-md border ${inputBgClass} ${inputTextColor} focus:ring-2 focus:outline-none`}
+              placeholder="Enter value"
+            />
+          </div>
+          <div>
+            <label htmlFor="optionSelect" className={`block text-sm font-medium mb-1 ${textColorClass}`}>Choose Option:</label>
+            <select
+              id="optionSelect"
+              className={`w-full p-2 rounded-md border ${inputBgClass} ${inputTextColor} focus:ring-2 focus:outline-none`}
+            >
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
