@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next.js Dashboard Project - Presentation</title>
+    <title>Next.js Dashboard Project - Elevate Your Data</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -26,6 +26,26 @@
         .dark .hover\:bg-blue-800:hover { background-color: #2c5282; }
         .dark .bg-gray-200 { background-color: #4a5568; } /* Darker secondary button */
         .dark .hover\:bg-gray-300:hover { background-color: #616e7e; }
+
+        /* Code block styling for examples */
+        pre {
+            background-color: #f7fafc; /* Light gray for light mode */
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.75rem; /* text-xs */
+            line-height: 1.5;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .dark pre {
+            background-color: #1f2937; /* Darker gray for dark mode */
+            color: #e2e8f0;
+        }
+        pre code {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -34,127 +54,219 @@
         <!-- Hero Section -->
         <section class="w-full text-center py-20 px-4 bg-white shadow-lg rounded-lg mb-12">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-gray-900">
-                Your Next.js Dashboard Project
+                Unlock Insights with Your Next.js Dashboard
             </h1>
             <p class="text-lg sm:text-xl md:text-2xl mb-8 text-gray-600 max-w-3xl mx-auto">
-                A comprehensive and modern web application built with Next.js, React, and Tailwind CSS,
-                showcasing various interactive components and a robust, responsive design.
+                Transform complex data into clear, actionable insights with a modern,
+                fully responsive, and highly customizable dashboard solution.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <button class="px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 bg-blue-700 hover:bg-blue-800 text-white">
-                    Live Demo
+                    Experience the Demo
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </button>
                 <button class="px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 bg-gray-200 hover:bg-gray-300 text-gray-800">
-                    Learn More
+                    View Documentation
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                 </button>
             </div>
         </section>
 
-        <!-- Features Section -->
+        <!-- Value Proposition / Why Choose Us Section -->
         <section class="w-full py-12 px-4 bg-white shadow-lg rounded-lg mb-12">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-900">Key Features</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature Card 1: Interactive Dashboard -->
-                <div class="p-6 rounded-lg shadow-md bg-gray-100">
-                    <div class="text-blue-500 mb-4 flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center text-gray-900">Interactive Dashboard</h3>
-                    <p class="text-center text-gray-600">
-                        A dynamic, drag-and-drop dashboard with sortable widgets for metrics and charts.
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-900">Why Our Dashboard?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-semibold mb-3 ${headingColorClass}">Data-Driven Decisions, Simplified.</h3>
+                    <p class="text-lg ${paragraphColorClass} mb-4">
+                        Our Next.js dashboard provides a robust foundation for any data-intensive application.
+                        It's engineered for performance, scalability, and an intuitive user experience,
+                        allowing your team to focus on insights, not infrastructure.
                     </p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
+                        <li><strong>Accelerated Development:</strong> Reusable components and a clear architecture.</li>
+                        <li><strong>Superior User Experience:</strong> Intuitive drag-and-drop, responsive design, and dynamic theming.</li>
+                        <li><strong>Scalable & Maintainable:</strong> Built with modern Next.js and Tailwind CSS best practices.</li>
+                    </ul>
+                </div>
+                <div class="flex justify-center">
+                    <!-- Placeholder for a compelling image/screenshot of the dashboard -->
+                    <img src="https://placehold.co/400x250/E0E7FF/4338CA?text=Dashboard+Mockup" alt="Dashboard Screenshot" class="rounded-lg shadow-xl max-w-full h-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section with Analytical Details and Examples -->
+        <section class="w-full py-12 px-4 bg-white shadow-lg rounded-lg mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 ${headingColorClass}">Core Capabilities</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12">
+
+                {/* Feature 1: Interactive Dashboard */}
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="text-blue-500 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold ${headingColorClass}">Dynamic Dashboard</h3>
+                    </div>
+                    <p class="text-lg ${paragraphColorClass} mb-3">
+                        Empower users to personalize their workspace. Our dashboard features intuitive drag-and-drop
+                        widget reordering, with layout preferences seamlessly persisted using <code>localStorage</code>.
+                        This enhances user engagement and productivity.
+                    </p>
+                    <pre><code class="language-javascript">
+// Persisting layout in localStorage
+useEffect(() => {
+    localStorage.setItem('layout', JSON.stringify(items));
+}, [items]);
+                    </code></pre>
                 </div>
 
-                <!-- Feature Card 2: Data Tables -->
-                <div class="p-6 rounded-lg shadow-md bg-gray-100">
-                    <div class="text-green-500 mb-4 flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table"><path d="M12 3v18"/><path d="M21 9H3"/><path d="M21 15H3"/><path d="M3 21V3h18v18H3z"/></svg>
+                {/* Feature 2: Advanced Data Tables */}
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="text-green-500 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-table"><path d="M12 3v18"/><path d="M21 9H3"/><path d="M21 15H3"/><path d="M3 21V3h18v18H3z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold ${headingColorClass}">Robust Data Tables</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center text-gray-900">Advanced Data Tables</h3>
-                    <p class="text-center text-gray-600">
-                        Filterable, paginated tables for efficient data management and display.
+                    <p class="text-lg ${paragraphColorClass} mb-3">
+                        Manage and visualize large datasets with ease. Our tables offer per-column filtering,
+                        pagination, and direct row actions. Crucially, they support CSV export and import,
+                        streamlining data workflows.
                     </p>
+                    <pre><code class="language-html">
+&lt;div class="overflow-x-auto"&gt;
+    &lt;table class="min-w-full"&gt;...&lt;/table&gt;
+&lt;/div&gt;
+                    </code></pre>
                 </div>
 
-                <!-- Feature Card 3: UI Components -->
-                <div class="p-6 rounded-lg shadow-md bg-gray-100">
-                    <div class="text-purple-500 mb-4 flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="3" x2="21" y1="15" y2="15"/><line x1="9" x2="9" y1="3" y2="21"/><line x1="15" x2="15" y1="3" y2="21"/></svg>
+                {/* Feature 3: Rich UI Components */}
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="text-purple-500 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-grid"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="3" x2="21" y1="15" y2="15"/><line x1="9" x2="9" y1="3" y2="21"/><line x1="15" x2="15" y1="3" y2="21"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold ${headingColorClass}">Versatile UI Elements</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center text-gray-900">Rich UI Components</h3>
-                    <p class="text-center text-gray-600">
-                        A collection of styled buttons, forms, and interactive elements, including modals.
+                    <p class="text-lg ${paragraphColorClass} mb-3">
+                        Accelerate development with a library of pre-styled, theme-aware UI components.
+                        From diverse button styles to dynamic modals for alerts and user input,
+                        maintain design consistency effortlessly.
                     </p>
+                    <pre><code class="language-html">
+&lt;button class="bg-blue-700 text-white p-2 rounded-md"&gt;
+    Action
+&lt;/button&gt;
+                    </code></pre>
                 </div>
 
-                <!-- Feature Card 4: Theming -->
-                <div class="p-6 rounded-lg shadow-md bg-gray-100">
-                    <div class="text-yellow-500 mb-4 flex justify-center">
-                        <!-- Dynamic Sun/Moon Icon based on theme -->
-                        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/></svg>
+                {/* Feature 4: Dynamic Theming */}
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="text-yellow-500 flex-shrink-0">
+                            <svg id="theme-icon-feature" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold ${headingColorClass}">Adaptive Theming</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center text-gray-900">Dynamic Theming</h3>
-                    <p class="text-center text-gray-600">
-                        Seamless light and dark mode switching, adapting the entire UI.
+                    <p class="text-lg ${paragraphColorClass} mb-3">
+                        Offer a personalized experience with instant light and dark mode switching.
+                        The entire UI adapts dynamically, respecting user preferences and reducing eye strain.
+                        Theme choice is automatically saved for future visits.
                     </p>
+                    <pre><code class="language-css">
+/* Tailwind's dark mode variant */
+.dark:bg-gray-700 { ... }
+                    </code></pre>
                 </div>
 
-                <!-- Feature Card 5: Responsive Design -->
-                <div class="p-6 rounded-lg shadow-md bg-gray-100">
-                    <div class="text-cyan-500 mb-4 flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                {/* Feature 5: Fully Responsive */}
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="text-cyan-500 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold ${headingColorClass}">Seamless Responsiveness</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center text-gray-900">Fully Responsive</h3>
-                    <p class="text-center text-gray-600">
-                        Optimized for all devices, from desktops to tablets and mobile phones.
+                    <p class="text-lg ${paragraphColorClass} mb-3">
+                        Designed with a mobile-first approach, our dashboard guarantees a flawless experience
+                        across all devices. Layouts, typography, and interactions fluidly adapt from
+                        desktops to tablets and smartphones, ensuring accessibility for every user.
                     </p>
+                    <pre><code class="language-html">
+&lt;div class="grid grid-cols-1 md:grid-cols-2"&gt;
+    &lt;!-- Content adapts --&gt;
+&lt;/div&gt;
+                    </code></pre>
                 </div>
 
-                <!-- Feature Card 6: Contact Form & Map -->
-                <div class="p-6 rounded-lg shadow-md bg-gray-100">
-                    <div class="text-red-500 mb-4 flex justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                {/* Feature 6: Contact & Location */}
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="text-red-500 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold ${headingColorClass}">Integrated Communication</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center text-gray-900">Contact & Location</h3>
-                    <p class="text-center text-gray-600">
-                        Integrated contact form with API submission and an embedded map.
+                    <p class="text-lg ${paragraphColorClass} mb-3">
+                        Facilitate direct communication with an integrated contact form.
+                        Backend API integration (simulated for demo) handles submissions,
+                        while an embedded map provides clear location details.
                     </p>
+                    <pre><code class="language-javascript">
+// API route for contact form
+fetch('/api/contact', { method: 'POST', ... });
+                    </code></pre>
                 </div>
             </div>
         </section>
 
         <!-- Call to Action Section -->
         <section class="w-full text-center py-16 px-4 bg-white shadow-lg rounded-lg">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-gray-900">Ready to Explore?</h2>
-            <p class="text-lg sm:text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
-                Dive into the live demo to experience the full capabilities of this Next.js application.
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6 ${headingColorClass}">Ready to Elevate Your Project?</h2>
+            <p class="text-lg sm:text-xl mb-8 ${paragraphColorClass} max-w-2xl mx-auto">
+                Experience the power of a well-crafted Next.js dashboard.
+                Click below to explore the live demo or dive into the detailed documentation.
             </p>
-            <button class="px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 bg-blue-700 hover:bg-blue-800 text-white">
-                Get Started Now
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </button>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button class="px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 ${primaryButtonClass}">
+                    Get Started with the Demo <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+                <button class="px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 ${secondaryButtonClass}">
+                    Explore the Codebase <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block ml-2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </button>
+            </div>
         </section>
     </div>
+
+    <!-- Footer Section -->
+    <footer class="w-full py-6 px-4 text-center text-sm ${paragraphColorClass} ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} shadow-inner mt-12">
+        <p>&copy; 2024 Georgios Zavlanis. All rights reserved.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
+            const themeToggleBtn = document.getElementById('theme-toggle'); // Main header toggle (if present)
+            const themeIconFeature = document.getElementById('theme-icon-feature'); // Icon in "Dynamic Theming" feature card
 
             // Function to apply theme classes
             function applyTheme(theme) {
                 if (theme === 'dark') {
                     body.classList.add('dark');
                     // Update theme icon to Moon
-                    themeIcon.innerHTML = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/>'; // Sun icon
-                    themeIcon.setAttribute('class', 'lucide lucide-moon'); // Change class to moon
+                    if (themeIconFeature) {
+                        themeIconFeature.innerHTML = '<path d="M12 3a6.36 6.36 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'; // Moon icon SVG
+                        themeIconFeature.setAttribute('class', 'lucide lucide-moon');
+                    }
                 } else {
                     body.classList.remove('dark');
                     // Update theme icon to Sun
-                    themeIcon.innerHTML = '<path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="12" r="4"/>'; // Moon icon
-                    themeIcon.setAttribute('class', 'lucide lucide-sun'); // Change class to sun
+                    if (themeIconFeature) {
+                        themeIconFeature.innerHTML = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/>'; // Sun icon SVG
+                        themeIconFeature.setAttribute('class', 'lucide lucide-sun');
+                    }
                 }
             }
 
@@ -162,13 +274,23 @@
             let currentTheme = localStorage.getItem('appTheme') || 'light';
             applyTheme(currentTheme);
 
-            // Add event listener to the theme icon (or a dedicated theme toggle button if you add one)
-            // For this standalone page, we'll make the theme icon itself clickable.
-            themeIcon.parentElement.addEventListener('click', () => {
-                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-                localStorage.setItem('appTheme', currentTheme);
-                applyTheme(currentTheme);
-            });
+            // Add event listener to the theme icon in the "Dynamic Theming" feature card
+            if (themeIconFeature) {
+                themeIconFeature.parentElement.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    localStorage.setItem('appTheme', currentTheme);
+                    applyTheme(currentTheme);
+                });
+            }
+
+            // If there's a separate theme toggle button in the header (from the original structure)
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    localStorage.setItem('appTheme', currentTheme);
+                    applyTheme(currentTheme);
+                });
+            }
         });
     </script>
 </body>

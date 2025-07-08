@@ -45,6 +45,30 @@
             margin-bottom: 0.5rem;
             display: block;
         }
+
+        /* Table of Contents specific styling */
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+        .toc a {
+            color: #2563eb; /* Blue for links */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+        .toc a:hover {
+            color: #1d4ed8; /* Darker blue on hover */
+            text-decoration: underline;
+        }
+        .dark .toc a {
+            color: #60a5fa; /* Lighter blue for dark mode links */
+        }
+        .dark .toc a:hover {
+            color: #93c5fd; /* Even lighter blue on hover */
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -58,44 +82,235 @@
             </button>
         </header>
 
+        <!-- Table of Contents -->
+        <nav class="toc mb-10 p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#key-features">2. Key Features</a></li>
+                <li><a href="#project-setup">3. Project Setup & Running</a>
+                    <ul class="ml-4 mt-2">
+                        <li><a href="#prerequisites">3.1. Prerequisites</a></li>
+                        <li><a href="#installation">3.2. Installation</a></li>
+                        <li><a href="#dev-server">3.3. Development Server</a></li>
+                        <li><a href="#production-build">3.4. Building for Production</a></li>
+                        <li><a href="#dockerization">3.5. Dockerization</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tailwind-css-usage">4. Tailwind CSS Integration</a>
+                    <ul class="ml-4 mt-2">
+                        <li><a href="#basic-styling">4.1. Basic Styling</a></li>
+                        <li><a href="#responsive-design">4.2. Responsive Design</a></li>
+                        <li><a href="#flexbox-grid">4.3. Flexbox and Grid</a></li>
+                    </ul>
+                </li>
+                <li><a href="#component-breakdown">5. Component Breakdown</a>
+                    <ul class="ml-4 mt-2">
+                        <li><a href="#dashboard-details">5.1. Dashboard</a></li>
+                        <li><a href="#data-tables-details">5.2. Data Tables</a></li>
+                        <li><a href="#buttons-modals-details">5.3. Buttons and Modals</a></li>
+                        <li><a href="#header-sidebar-details">5.4. Header and Sidebar</a></li>
+                        <li><a href="#contact-form-details">5.5. Contact Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="#theming-responsiveness">6. Theming & Responsiveness</a>
+                    <ul class="ml-4 mt-2">
+                        <li><a href="#dynamic-theming">6.1. Dynamic Theming</a></li>
+                        <li><a href="#global-responsiveness">6.2. Global Responsiveness</a></li>
+                    </ul>
+                </li>
+                <li><a href="#conclusion">7. Conclusion</a></li>
+            </ul>
+        </nav>
+
         <!-- Introduction -->
-        <section class="mb-10">
+        <section id="introduction" class="mb-10">
             <h2 class="text-3xl font-bold mb-4 text-gray-900">1. Introduction</h2>
             <p class="text-gray-600 leading-relaxed">
                 This document provides an analytical overview of the "Next.js Dashboard Project," a modern web application
                 showcasing various interactive components and a robust, responsive design. Built with Next.js, React, and
                 styled using Tailwind CSS, this project serves as a template for building dynamic and user-friendly dashboards.
+                It emphasizes modularity, reusability, and a strong user experience across different devices.
             </p>
         </section>
 
         <!-- Key Features -->
-        <section class="mb-10">
+        <section id="key-features" class="mb-10">
             <h2 class="text-3xl font-bold mb-4 text-gray-900">2. Key Features</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                The project integrates several core functionalities and design principles:
+            </p>
             <ul class="list-disc list-inside text-gray-600 space-y-2">
-                <li><strong>Interactive Dashboard:</strong> A dynamic, drag-and-drop interface with sortable widgets for metrics and charts, leveraging `dnd-kit` for seamless interaction and `localStorage` for persistence.</li>
-                <li><strong>Advanced Data Tables:</strong> Fully functional tables with per-column filtering, pagination, and action buttons (edit/delete). Includes CSV export and import capabilities.</li>
-                <li><strong>Rich UI Components:</strong> A dedicated section showcasing various button styles (solid, outline, ghost), sizes (sm, md, lg), and states (disabled, with icons). Also demonstrates custom modal implementations.</li>
-                <li><strong>Dynamic Theming:</strong> Seamless light and dark mode switching, adapting the entire UI's color scheme for user preference.</li>
-                <li><strong>Fully Responsive Design:</strong> Optimized for optimal viewing and interaction across all devices, from large desktops to tablets and small mobile phones, achieved primarily with Tailwind CSS utility classes.</li>
-                <li><strong>Contact Form & Location:</strong> An integrated contact form with dummy API submission (simulated email sending) and an embedded Google Maps location.</li>
-                <li><strong>Responsive Header & Sidebar:</strong> A dynamic header with responsive navigation and a sidebar that adapts its visibility and state (expanded/collapsed) based on screen size.</li>
+                <li><strong>Interactive Dashboard:</strong> A dynamic, drag-and-drop interface with sortable widgets for metrics and charts, leveraging <code>@dnd-kit</code> for seamless interaction and <code>localStorage</code> for persistence. This allows users to customize their dashboard layout.</li>
+                <li><strong>Advanced Data Tables:</strong> Fully functional tables with per-column filtering, pagination, and action buttons (edit/delete). Includes CSV export and import capabilities for data management.</li>
+                <li><strong>Rich UI Components:</strong> A dedicated section showcasing various button styles (solid, outline, ghost), sizes (sm, md, lg), and states (disabled, with icons). Also demonstrates custom modal implementations for various alert and interaction patterns.</li>
+                <li><strong>Dynamic Theming:</strong> Seamless light and dark mode switching, adapting the entire UI's color scheme for user preference. The chosen theme is persisted locally.</li>
+                <li><strong>Fully Responsive Design:</strong> Optimized for optimal viewing and interaction across all devices, from large desktops to tablets and small mobile phones, achieved primarily with Tailwind CSS utility classes and flexible layouts.</li>
+                <li><strong>Contact Form & Location:</strong> An integrated contact form with dummy API submission (simulated email sending to a console log) and an embedded Google Maps location for business presence.</li>
+                <li><strong>Responsive Header & Sidebar:</strong> A dynamic header with responsive navigation that collapses into a dropdown on small screens. The sidebar is fixed, collapsible, and adapts its width and content visibility based on screen size, ensuring it doesn't overlap main content.</li>
             </ul>
         </section>
 
+        <!-- Project Setup & Running -->
+        <section id="project-setup" class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">3. Project Setup & Running</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                Follow these instructions to get the project up and running on your local machine.
+            </p>
+
+            <h3 id="prerequisites" class="text-2xl font-semibold mb-3 text-gray-900">3.1. Prerequisites</h3>
+            <p class="text-gray-600 mb-2">
+                Ensure you have the following software installed on your system:
+            </p>
+            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                <li><strong class="text-gray-800 dark:text-gray-200">Node.js:</strong> Version 18.x or higher. You can download it from <a href="https://nodejs.org/" target="_blank" class="text-blue-600 hover:underline">nodejs.org</a>.</li>
+                <li><strong class="text-gray-800 dark:text-gray-200">npm</strong> (Node Package Manager) or <strong class="text-gray-800 dark:text-gray-200">Yarn:</strong> npm comes with Node.js. Install Yarn with <code>npm install -g yarn</code>.</li>
+                <li><strong class="text-gray-800 dark:text-gray-200">Git:</strong> For cloning the repository.</li>
+                <li><strong class="text-gray-800 dark:text-gray-200">Docker</strong> (Optional, for Dockerization): If you plan to dockerize the application.</li>
+            </ul>
+
+            <h3 id="installation" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.2. Installation</h3>
+            <p class="text-gray-600 mb-2">
+                Clone the repository and install dependencies:
+            </p>
+            <pre><code class="language-bash">
+# 1. Clone the repository
+git clone &lt;repository-url&gt;
+cd &lt;project-directory&gt;
+
+# 2. Install dependencies (using npm)
+npm install
+
+# OR (using yarn)
+# yarn install
+            </code></pre>
+
+            <h3 id="dev-server" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.3. Running the Development Server</h3>
+            <p class="text-gray-600 mb-2">
+                To run the application in development mode:
+            </p>
+            <pre><code class="language-bash">
+npm run dev
+
+# OR
+# yarn dev
+            </code></pre>
+            <p class="text-gray-600 mt-2">
+                The application will be accessible at <a href="http://localhost:3000" target="_blank" class="text-blue-600 hover:underline">http://localhost:3000</a> (or another port if 3000 is in use).
+                Changes to the code will trigger hot reloading.
+            </p>
+
+            <h3 id="production-build" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.4. Building for Production</h3>
+            <p class="text-gray-600 mb-2">
+                To create an optimized production build of the application:
+            </p>
+            <pre><code class="language-bash">
+npm run build
+
+# OR
+# yarn build
+            </code></pre>
+            <p class="text-gray-600 mt-2">
+                This command compiles the Next.js application into static assets and server-side code ready for deployment.
+                The output will be in the <code>.next</code> folder.
+            </p>
+            <p class="text-gray-600 mt-2">
+                To start the production server after building:
+            </p>
+            <pre><code class="language-bash">
+npm start
+
+# OR
+# yarn start
+            </code></pre>
+
+            <h3 id="dockerization" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.5. Dockerization</h3>
+            <p class="text-gray-600 leading-relaxed mb-2">
+                You can containerize this Next.js application using Docker for consistent deployment across environments.
+            </p>
+            <h4 class="text-xl font-semibold mb-2 text-gray-900">3.5.1. Dockerfile</h4>
+            <p class="text-gray-600 mb-2">
+                Create a file named <code>Dockerfile</code> in the root of your project:
+            </p>
+            <pre><code class="language-dockerfile">
+# Use an official Node.js runtime as a parent image
+FROM node:18-alpine AS base
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and yarn.lock (or package-lock.json)
+COPY package.json yarn.lock* ./
+
+# Install dependencies
+FROM base AS dependencies
+RUN yarn install --frozen-lockfile
+
+# Build the Next.js application
+FROM base AS builder
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY . .
+RUN yarn build
+
+# Production image
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+
+# Copy built application
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Run the Next.js production server
+CMD ["yarn", "start"]
+            </code></pre>
+
+            <h4 class="text-xl font-semibold mb-2 mt-6 text-gray-900">3.5.2. Build the Docker Image</h4>
+            <p class="text-gray-600 mb-2">
+                Navigate to your project root in the terminal and run:
+            </p>
+            <pre><code class="language-bash">
+docker build -t nextjs-dashboard-app .
+            </code></pre>
+            <p class="text-gray-600 mt-2">
+                This command builds a Docker image named <code>nextjs-dashboard-app</code>.
+            </p>
+
+            <h4 class="text-xl font-semibold mb-2 mt-6 text-gray-900">3.5.3. Run the Docker Container</h4>
+            <p class="text-gray-600 mb-2">
+                To run the container:
+            </p>
+            <pre><code class="language-bash">
+docker run -p 3000:3000 nextjs-dashboard-app
+            </code></pre>
+            <p class="text-gray-600 mt-2">
+                The application will be accessible via Docker at <a href="http://localhost:3000" target="_blank" class="text-blue-600 hover:underline">http://localhost:3000</a>.
+            </p>
+        </section>
+
         <!-- Tailwind CSS Usage -->
-        <section class="mb-10">
-            <h2 class="text-3xl font-bold mb-4 text-gray-900">3. Tailwind CSS Integration</h2>
+        <section id="tailwind-css-usage" class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">4. Tailwind CSS Integration</h2>
             <p class="text-gray-600 leading-relaxed mb-4">
                 Tailwind CSS is extensively used throughout the project for rapid UI development and consistent styling.
-                It's a utility-first CSS framework that allows building designs directly in your HTML markup.
+                It's a utility-first CSS framework that allows building designs directly in your HTML markup,
+                enabling highly customizable and responsive interfaces with minimal custom CSS.
             </p>
-            <h3 class="text-2xl font-semibold mb-3 text-gray-900">3.1. Basic Styling</h3>
+            <h3 id="basic-styling" class="text-2xl font-semibold mb-3 text-gray-900">4.1. Basic Styling</h3>
             <p class="text-gray-600 mb-2">
                 Common classes for padding, margin, text, and background colors:
             </p>
-            <pre><code class="language-html">&lt;div class="p-4 bg-blue-500 text-white rounded-lg shadow-md"&gt;
+            <pre><code class="language-html">
+&lt;div class="p-4 bg-blue-500 text-white rounded-lg shadow-md"&gt;
     This is a styled div.
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+            </code></pre>
             <ul class="list-disc list-inside text-gray-600 mt-2">
                 <li><code>p-4</code>: 1rem (16px) padding on all sides.</li>
                 <li><code>bg-blue-500</code>: Blue background color.</li>
@@ -104,27 +319,32 @@
                 <li><code>shadow-md</code>: Medium box shadow.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.2. Responsive Design</h3>
+            <h3 id="responsive-design" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.2. Responsive Design</h3>
             <p class="text-gray-600 mb-2">
-                Tailwind uses breakpoint prefixes for responsive design. Styles apply from that breakpoint upwards.
+                Tailwind uses breakpoint prefixes for responsive design. Styles apply from that breakpoint upwards,
+                allowing for mobile-first development.
             </p>
-            <pre><code class="language-html">&lt;div class="w-full md:w-1/2 lg:w-1/3 px-4"&gt;
+            <pre><code class="language-html">
+&lt;div class="w-full md:w-1/2 lg:w-1/3 px-4"&gt;
     Content that adapts to screen size.
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+            </code></pre>
             <ul class="list-disc list-inside text-gray-600 mt-2">
-                <li><code>w-full</code>: Full width on small screens.</li>
-                <li><code>md:w-1/2</code>: Half width on medium screens and larger.</li>
-                <li><code>lg:w-1/3</code>: One-third width on large screens and larger.</li>
+                <li><code>w-full</code>: Full width on small screens (default breakpoint).</li>
+                <li><code>md:w-1/2</code>: Half width on medium screens (768px) and larger.</li>
+                <li><code>lg:w-1/3</code>: One-third width on large screens (1024px) and larger.</li>
                 <li><code>px-4</code>: Horizontal padding.</li>
             </ul>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">3.3. Flexbox and Grid</h3>
+            <h3 id="flexbox-grid" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.3. Flexbox and Grid</h3>
             <p class="text-gray-600 mb-2">
-                Layouts are easily managed with flexbox and grid utilities.
+                Complex layouts are easily managed with Tailwind's comprehensive flexbox and grid utilities.
             </p>
-            <pre><code class="language-html">&lt;div class="flex flex-col sm:flex-row justify-center items-center gap-4"&gt;
+            <pre><code class="language-html">
+&lt;div class="flex flex-col sm:flex-row justify-center items-center gap-4"&gt;
     &lt;!-- Flex items --&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+            </code></pre>
             <ul class="list-disc list-inside text-gray-600 mt-2">
                 <li><code>flex</code>: Enables flex container.</li>
                 <li><code>flex-col</code>: Stacks items vertically by default.</li>
@@ -136,13 +356,16 @@
         </section>
 
         <!-- Component-Specific Details -->
-        <section class="mb-10">
-            <h2 class="text-3xl font-bold mb-4 text-gray-900">4. Component Breakdown</h2>
+        <section id="component-breakdown" class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">5. Component Breakdown</h2>
+            <p class="text-gray-600 leading-relaxed mb-4">
+                This section details the implementation specifics of key components within the project.
+            </p>
 
-            <h3 class="text-2xl font-semibold mb-3 text-gray-900">4.1. Dashboard</h3>
+            <h3 id="dashboard-details" class="text-2xl font-semibold mb-3 text-gray-900">5.1. Dashboard</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                The dashboard uses <code>@dnd-kit/core</code> and <code>@dnd-kit/sortable</code> for drag-and-drop functionality.
-                The layout of widgets is persisted using <code>localStorage</code>, ensuring user preferences are saved across sessions.
+                The dashboard leverages <code>@dnd-kit/core</code> and <code>@dnd-kit/sortable</code> for its intuitive drag-and-drop functionality, allowing users to reorder widgets.
+                The layout configuration is persisted using the browser's <code>localStorage</code>, ensuring that a user's customized dashboard state is maintained across sessions.
             </p>
             <pre><code class="language-javascript">
 // Example of localStorage usage in Dashboard.js
@@ -162,10 +385,11 @@ useEffect(() => {
 }, [items]);
             </code></pre>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.2. Data Tables</h3>
+            <h3 id="data-tables-details" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">5.2. Data Tables</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                The data tables feature client-side filtering and pagination. Data can be exported to CSV and new data can be imported from CSV files.
-                Responsiveness is handled by <code>overflow-x-auto</code> on the table wrapper and responsive padding on table cells.
+                The data tables are designed for efficient data display and management. They include client-side filtering capabilities for each column, pagination for large datasets, and action buttons (edit/delete) for individual rows.
+                Functionality for exporting data to CSV and importing new data from CSV files is also integrated.
+                Responsiveness on smaller screens is achieved by wrapping the table in an <code>overflow-x-auto</code> container and using responsive padding classes (<code>px-2 sm:px-6</code>) on table cells to adapt spacing.
             </p>
             <pre><code class="language-html">
 &lt;div class="overflow-x-auto rounded-lg shadow-md"&gt;
@@ -184,74 +408,81 @@ useEffect(() => {
 &lt;/div&gt;
             </code></pre>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.3. Buttons and Modals</h3>
+            <h3 id="buttons-modals-details" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">5.3. Buttons and Modals</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                A custom <code>Button</code> component supports various colors, sizes, and variants (solid, outline, ghost).
-                Example buttons demonstrate opening custom modals (information, confirmation, custom content).
+                A highly reusable <code>Button</code> component is implemented, supporting various visual styles (solid, outline, ghost), multiple sizes (small, medium, large), and states (e.g., disabled, with integrated icons).
+                The project also showcases custom modal implementations for different interaction patterns, such as information alerts, confirmation dialogs, and modals capable of hosting custom content or forms.
             </p>
             <pre><code class="language-javascript">
 // Example Button usage
 &lt;Button color="primary" size="md"&gt;Primary Button&lt;/Button&gt;
 &lt;Button onClick={openInfoModal} color="primary" size="md"&gt;
-    &lt;Info size={18} className="mr-2 inline-block" /&gt; Open Info Modal
+    &lt;!-- Lucide icon for information --&gt;
+    &lt;svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 inline-block"&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;path d="M12 16v-4"/&gt;&lt;path d="M12 8h.01"/&gt;&lt;/svg&gt; Open Info Modal
 &lt;/Button&gt;
             </code></pre>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.4. Header and Sidebar</h3>
+            <h3 id="header-sidebar-details" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">5.4. Header and Sidebar</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                The header provides responsive navigation with a collapsible dropdown menu on small screens.
-                The sidebar is fixed, collapsible, and adapts its width and content visibility based on screen size, ensuring it doesn't overlap main content.
+                The application's navigation system consists of a dynamic header and a persistent sidebar.
+                The header provides responsive navigation, transitioning into a collapsible dropdown menu on small screens for improved mobile usability.
+                The sidebar is fixed in position, can be expanded or collapsed, and dynamically adjusts its width and content visibility based on the screen size (e.g., showing only icons when collapsed on mobile) to prevent overlap with the main content area.
             </p>
             <pre><code class="language-javascript">
-// Sidebar responsive logic (simplified)
+// Sidebar responsive logic (simplified from Sidebar.js)
 const sidebarClasses = `
     fixed top-0 left-0 h-full ...
     ${isLargeScreen
-      ? 'w-64 translate-x-0'
+      ? 'w-64 translate-x-0' // Full width on large screens
       : isSidebarExpanded
-        ? 'w-64 translate-x-0'
-        : 'w-16 translate-x-0 overflow-hidden' // Collapsed on small screens
+        ? 'w-64 translate-x-0' // Expanded on small screens (overlays content)
+        : 'w-16 translate-x-0 overflow-hidden' // Collapsed on small screens (icons only)
     }
 `;
             </code></pre>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">4.5. Contact Form</h3>
+            <h3 id="contact-form-details" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">5.5. Contact Form</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                The contact form uses a Next.js API route (<code>/api/contact</code>) to handle submissions.
-                For demonstration purposes, the API endpoint simulates sending an email by logging the form data to the server console.
+                The contact form allows users to send messages. Submissions are handled via a Next.js API route (<code>/api/contact</code>).
+                For demonstration purposes within this environment, the API endpoint simulates sending an email by logging the form data to the server console, rather than integrating with an actual email service.
             </p>
             <pre><code class="language-javascript">
-// app/api/contact/route.js (POST handler)
+// app/api/contact/route.js (Simplified POST handler)
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   const formData = await request.json();
-  console.log('--- Simulating Email Send ---', formData);
+  console.log('--- Simulating Email Send ---');
+  console.log('To: dummy-email@example.com');
+  console.log('From:', formData.email, '(Name:', formData.name + ')');
+  console.log('Subject:', formData.subject);
+  console.log('Message:', formData.message);
+  console.log('---------------------------');
   return NextResponse.json({ message: 'Message sent successfully!' }, { status: 200 });
 }
             </code></pre>
         </section>
 
         <!-- Theming and Responsiveness -->
-        <section class="mb-10">
-            <h2 class="text-3xl font-bold mb-4 text-gray-900">5. Theming & Responsiveness</h2>
-            <h3 class="text-2xl font-semibold mb-3 text-gray-900">5.1. Dynamic Theming</h3>
+        <section id="theming-responsiveness" class="mb-10">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">6. Theming & Responsiveness</h2>
+            <h3 id="dynamic-theming" class="text-2xl font-semibold mb-3 text-gray-900">6.1. Dynamic Theming</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                The application supports light and dark modes. This is implemented by toggling a <code>dark</code> class on the <code>&lt;body&gt;</code> element.
-                Tailwind CSS then applies different styles based on this class using its <code>dark:</code> variant modifier.
-                The theme preference is persisted in <code>localStorage</code>.
+                The application provides a seamless light and dark mode experience. This is achieved by dynamically toggling a <code>dark</code> class on the <code>&lt;body&gt;</code> HTML element.
+                Tailwind CSS then applies different styles based on this class using its <code>dark:</code> variant modifier (e.g., <code>dark:bg-gray-700</code>).
+                The user's theme preference is persisted in their browser's <code>localStorage</code>, ensuring their choice is remembered across visits.
             </p>
             <pre><code class="language-css">
 /* Example from style block */
-.dark .bg-white { background-color: #2d3748; }
+.dark .bg-white { background-color: #2d3748; } /* Applies when body has 'dark' class */
 .dark .text-gray-800 { color: #e2e8f0; }
             </code></pre>
 
-            <h3 class="text-2xl font-semibold mb-3 mt-6 text-gray-900">5.2. Global Responsiveness</h3>
+            <h3 id="global-responsiveness" class="text-2xl font-semibold mb-3 mt-6 text-gray-900">6.2. Global Responsiveness</h3>
             <p class="text-gray-600 leading-relaxed mb-2">
-                The entire application layout is designed to be fully responsive.
-                The main content area's padding and margins dynamically adjust based on screen size to prevent cutoffs and ensure optimal viewing.
-                This is managed primarily in the root layout file (e.g., <code>app/(main)/layout.js</code>) using Tailwind's responsive prefixes.
+                The entire application layout is meticulously designed to be fully responsive, providing an optimal user experience on any device.
+                This is managed primarily in the root layout file (e.g., <code>app/(main)/layout.js</code>) using Tailwind's responsive prefixes (e.g., <code>sm:</code>, <code>md:</code>, <code>lg:</code>).
+                The main content area's padding and margins dynamically adjust based on screen size to prevent content cutoff and ensure proper spacing, especially when accounting for the sidebar's presence.
             </p>
             <pre><code class="language-html">
 &lt;!-- Example from app/(main)/layout.js --&gt;
@@ -260,19 +491,19 @@ export async function POST(request) {
 &lt;/main&gt;
             </code></pre>
             <ul class="list-disc list-inside text-gray-600 mt-2">
-                <li><code>px-8</code>: 32px horizontal padding on small screens.</li>
-                <li><code>sm:px-8</code>: Retains 32px horizontal padding on small screens and larger.</li>
-                <li>This ensures consistent spacing from the viewport edges.</li>
+                <li><code>px-8</code>: 32px horizontal padding applied to the main content area on all screens by default.</li>
+                <li><code>sm:px-8</code>: Explicitly maintains 32px horizontal padding on small screens and larger.</li>
+                <li>This ensures consistent spacing from the viewport edges, preventing content from touching the screen boundaries.</li>
             </ul>
         </section>
 
         <!-- Conclusion -->
-        <section>
-            <h2 class="text-3xl font-bold mb-4 text-gray-900">6. Conclusion</h2>
+        <section id="conclusion">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900">7. Conclusion</h2>
             <p class="text-gray-600 leading-relaxed">
-                This project demonstrates a robust and feature-rich dashboard application built with modern web technologies.
-                Its modular component structure, dynamic theming, and responsive design make it a strong foundation
-                for various web applications.
+                This project demonstrates a robust and feature-rich dashboard application built with modern web technologies including Next.js, React, and Tailwind CSS.
+                Its modular component structure, dynamic theming capabilities, and highly responsive design make it a strong and adaptable foundation
+                for various web applications, emphasizing both functionality and user experience.
             </p>
         </section>
     </div>
